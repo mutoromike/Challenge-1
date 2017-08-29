@@ -61,3 +61,19 @@ input[type=submit] :hover {
     overflow: auto;
     color: #FFFDFD
 }
+
+#link {
+    color: #FFFDFD;
+    text-decoration: none;
+    background-color: #0BA5B5;
+    width: 100%;
+    padding: 5px;
+    margin: 8px ;
+    display: inline-block;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+#link:hover {
+    color: #00FFF7;
+}
