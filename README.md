@@ -1,16 +1,16 @@
 # Challenge-1 - Shopping List Application
 Welcome to your shopping list
 
-#Design folder
+# Design folder
 
 UML Class Diagrams, Wireframes 
 
-#App folder
+# App folder
 
 Contains:
 A template/ folder which has html files
 A static/ folder which has css file
-#Installation
+# Installation
 
 Clone the repo to your local machine
 
