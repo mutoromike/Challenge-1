@@ -1,6 +1,6 @@
 # views.py
 from flask import Flask, render_template, flash, redirect, url_for, request, session
-
+from app.models.user import user
 from app import app
 app = Flask(__name__)
 app.secret_key = "super secret key"
@@ -11,7 +11,7 @@ def signup():
     user = userdetails               
     return user
 
-mine = signup()
+create_user = {}
 
 @app.route('/')#route to the index file
 def index():
