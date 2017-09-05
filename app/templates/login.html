@@ -27,14 +27,15 @@
                     request.form.password }}" required>
                 <br>
                 <br>
+                <div class="container">
+                    {% if error %}
+                    <p class="error"><strong>Error:</strong> {{ error }} </p>
+                    {% endif %}
+                    </div>
                 <input type="submit" value="Login">
                 <br>
         </form>
-        <div class="container">
-        {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }} </p>
-        {% endif %}
-        </div>
+        
         <p>
             New? <a href='register'>Sign Up</a>
         </p>

@@ -1,17 +1,27 @@
 # views.py
 from flask import Flask, render_template, flash, redirect, url_for, request, session
-from app.models.user import user
+from app.Models.user import User
 from app import app
-app = Flask(__name__)
+import validators
+#app = Flask(__name__)
 app.secret_key = "super secret key"
 
-def signup():
-    userdetails = {'username': 'username', 'email': 'email', \
-                    'password': 'password'}
-    user = userdetails               
-    return user
+userdetails = {}
 
-create_user = {}
+def create_new_user(username, email, password, confirm_password):
+    if username in userdetails:
+        error = 'Username already exists'
+    if email in userdetails:
+        error = 'email already exists'    
+    if validators.email(email) != True:
+        error = 'Enter a valid email'
+    if len(password) < 5:
+        error = 'Password should be more than four characters'
+    if password != confirm_password:
+        error = 'The two passwords should match'   
+    global userdetails
+    account = User(username, email, password, confirm_password)
+    userdetails = account
 
 @app.route('/')#route to the index file
 def index():
@@ -20,14 +30,18 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])#route to handle requests to the login
 def login():
     error = None 
-      
+    global userdetails
+
     if request.method == 'POST':
        
         name = request.form['username']
         pswd = request.form['password']
-        if name in mine and pswd in mine:
-            session['logged_in'] = True
-            return redirect(url_for('dashboard'))        
+        if name in userdetails:
+            if pswd in userdetails:
+                session['logged_in'] = True
+                return redirect(url_for('dashboard')) 
+            else:
+                error = 'Invalid credentials'       
         else:
             error = 'Invalid Credentials'      
     return render_template("login.html")
@@ -54,18 +68,8 @@ def register():
         password    = request.form['password']
         confirm_password = request.form['confirm_password']
         
-        if email not in mine:
-            if password == confirm_password:
-                mine['username'] = username
-                mine['email'] = email
-                mine['password'] = password
-                flash('Signup successful, you can now create a shopping list')
-                session['logged_in'] = False
-                return redirect(url_for('login'))
-            else:
-                error = 'Passwords do not match'
-        else:
-            error = 'Email already in use'
+        new = create_new_user(username, email, password, confirm_password)
+        return redirect('/dashboard')
     return render_template('register.html')
 
 
