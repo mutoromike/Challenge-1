@@ -4,7 +4,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"/>
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css')}}"/>
-      <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='bootstrap.min.js')}}"/></head>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-grid.min.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-reboot.min.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-reboot.css') }}">
+      <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='bootstrap.min.js')}}"/>
+    </head>
     <body>
       <div id="form">
     <p>
@@ -28,6 +32,16 @@
       <input type="password" name="confirm_password" placeholder="confirm password" value="{{
         request.form.confirm_password }}"required>
       <br><br>
+      <div class="container">
+          {% if error%}
+          <div class="alert alert-danger" role="alert">
+            <button type="button" class="close" data-dissmiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <p>{{ error }}</p>
+          </div>
+          {% endif%}
+      </div>
       <input type="submit" value="Signup">
     </form> 
       </div>

@@ -15,6 +15,9 @@
                 <br>
                 <br>
                 <div >
+                    {% if session['logged_in'] == True %}
+                        <p> {{ session['id']}}
+                    {% endif %}
                 <a href="#" id="link"> View Lists </a>
                 <br>
                 <a href="#" id="link"> Manage Lists </a>

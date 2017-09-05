@@ -7,21 +7,15 @@ import validators
 app.secret_key = "super secret key"
 
 userdetails = {}
+app.username_list = []
+app.email_list = []
+app.passwords_list = []
 
-def create_new_user(username, email, password, confirm_password):
-    if username in userdetails:
-        error = 'Username already exists'
-    if email in userdetails:
-        error = 'email already exists'    
-    if validators.email(email) != True:
-        error = 'Enter a valid email'
-    if len(password) < 5:
-        error = 'Password should be more than four characters'
-    if password != confirm_password:
-        error = 'The two passwords should match'   
+def create_new_user(username, password, email):      
     global userdetails
-    account = User(username, email, password, confirm_password)
-    userdetails = account
+    account = User(username, email, password)
+    userdetails[username] = account
+    return userdetails
 
 @app.route('/')#route to the index file
 def index():
@@ -29,22 +23,22 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])#route to handle requests to the login
 def login():
-    error = None 
     global userdetails
-
+    error = None
     if request.method == 'POST':
        
         name = request.form['username']
         pswd = request.form['password']
-        if name in userdetails:
-            if pswd in userdetails:
+        if name in app.username_list:
+            if pswd in app.passwords_list:
                 session['logged_in'] = True
+                session['id'] = name
                 return redirect(url_for('dashboard')) 
             else:
-                error = 'Invalid credentials'       
+                error = 'Wrong Password'       
         else:
-            error = 'Invalid Credentials'      
-    return render_template("login.html")
+            error = 'Username Does not exist'      
+    return render_template("login.html", error=error)
     
     
 
@@ -67,9 +61,28 @@ def register():
         email       = request.form['email']
         password    = request.form['password']
         confirm_password = request.form['confirm_password']
-        
-        new = create_new_user(username, email, password, confirm_password)
-        return redirect('/dashboard')
-    return render_template('register.html')
+        if username not in app.username_list:
+            if email not in app.email_list:
+                if validators.email(email):
+                    if len(password) > 5:
+                        if password == confirm_password:         
+                            new = create_new_user(username, email, password)
+                            app.username_list.append(username)
+                            app.email_list.append(email)
+                            app.passwords_list.append(password)
+                            userdetails = new
+                            #session['logged_in'] = True
+                            return redirect('/login')
+                        else:
+                            error = 'The two passwords should match'
+                    else:    
+                        error = 'Password should be more than five characters'
+                else:    
+                    error = 'Enter a valid email'   
+            else:
+                error = 'Email has already been used'
+        else:
+            error = 'Username has already been used'
+    return render_template('register.html', error=error)
 
 
