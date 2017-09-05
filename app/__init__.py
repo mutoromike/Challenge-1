@@ -13,3 +13,5 @@ app.config.from_object('config')
 
 #set static folder path
 app.static_folder = 'static'
+
+
