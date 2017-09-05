@@ -38,9 +38,7 @@ def login():
                 error = 'Wrong Password'       
         else:
             error = 'Username Does not exist'      
-    return render_template("login.html", error=error)
-    
-    
+    return render_template("login.html", error=error)    
 
 @app.route('/dashboard')
 def dashboard():
@@ -71,7 +69,6 @@ def register():
                             app.email_list.append(email)
                             app.passwords_list.append(password)
                             userdetails = new
-                            #session['logged_in'] = True
                             return redirect('/login')
                         else:
                             error = 'The two passwords should match'
