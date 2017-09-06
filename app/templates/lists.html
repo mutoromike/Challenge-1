@@ -10,7 +10,7 @@
         <body>
             <div id="nav">
                 <p>
-                    Dashboard
+                        <a href="/dashboard" id="link"> Dashboard </a>
                 </p>
                 <br>
                 <br>
@@ -18,41 +18,34 @@
                     {% if session['logged_in'] == True %}
                         <p> {{ session['id']}}
                     {% endif %}
-                <a href="/shoppinglist" id="link"> View Lists </a>
+                <a href="/dashboard" id="link"> Create New List </a>
                 <br>
                 <a href="#" id="link"> Manage Lists </a>
                 <br>
                 <a href="logout" id="link"> Logout </a>
                 </div>
             </div>
-            <p id="welcome" style="margin-left:25%">
-                Welcome to your dashboard.
-            </p>
+            
             <br>
             <br>
             
             <div id="form" style="margin-left:25%">
+            <p>
+                Your shopping lists
+            </p>
+            {% if session['logged_in'] == True %}
+            <ol>
+                {% if shoppinglists == []  %}  
+                    <li> None </li> 
+                {% else %}           
+                    {% for shoppinglist in shoppinglists %}
+                        <li><a href="/shoppinglist">{{ shoppinglist }}</a></li>
+                    {% endfor %}
+                {% endif %}
+            </ol>
             
-           
-            <form action="" style="margin:15px" method="post">
-                    Create new shopping list
-                    <br>
-                    <input type="text" name="shoppinglist" placeholder="shoppinglist" value="{{
-                        request.form.shoppinglist }}" required>
-                    <br>
-                    <div class="container">
-                            {% for message in get_flashed_messages() %}
-                            <div class="alert alert-success" role="alert">
-                              <button type="button" class="close" data-dissmiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                              <p>{{ message }}</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    <input type="submit" value="Create List">
-                    <br>
-            </form>
+            {% endif %}
+        
 
             </div>
         </body>
