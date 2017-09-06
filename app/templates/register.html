@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html id="main">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome.css')}}"/>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome.min.css')}}"/>
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"/>
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css')}}"/>
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-grid.min.css') }}">
@@ -10,7 +12,21 @@
       <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='bootstrap.min.js')}}"/>
     </head>
     <body>
-      <div id="form">
+      <h1 style="padding-top:1%; text-align: center; font-family: sans-serif; color:#434546;font-size: 80px; font-weight: bold;"> <!--Montserrat;-->
+          Shopping List App
+      </h1>
+      <div id="navigation" style="position:absolute; ">
+          <p>
+              <h4 style="font-weight: bold">
+              Welcome to Shopping List
+              </h4>
+              <br>
+              An application that allows you to manage all your shopping lists
+              in one place.  
+          </p>
+      </div>
+    <div style="padding-left: 50%; padding-top: 2%">
+    <div id="form">
     <p>
       Sign Up
     </p>
@@ -44,6 +60,7 @@
       </div>
       <input type="submit" value="Signup">
     </form> 
+    </div>
       </div>
     
     </body>

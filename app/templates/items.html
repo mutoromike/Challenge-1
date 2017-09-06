@@ -10,13 +10,12 @@
             <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='bootstrap.min.js')}}"/>
         </head>
         <body>
-                <h1 style="padding-top:1%; text-align: center; font-family: sans-serif; color:#434546;font-size: 80px; font-weight: bold;"> <!--Montserrat;-->
-                    Shopping List App
-                </h1>
-            <div id="navigation" style="font-weight: normal; padding-top: 0%;position:absolute;">
+            <div id="nav">
                 <p>
                         <a href="/dashboard" id="link"> Dashboard </a>
                 </p>
+                <br>
+                <br>
                 <div >
                     {% if session['logged_in'] == True %}
                         <p> {{ session['id']}}
@@ -38,11 +37,11 @@
             </p>
             {% if session['logged_in'] == True %}
             <ol>
-                {% if shoppinglists == []  %}  
+                {% if itemlists == []  %}  
                     <li> None </li> 
                 {% else %}           
-                    {% for shoppinglist in shoppinglists %}
-                        <li><a href="/add_item">{{ shoppinglist }}</a></li>
+                    {% for item in itemlists %}
+                        <li>{{ item }}</li>
                     {% endfor %}
                 {% endif %}
             </ol>

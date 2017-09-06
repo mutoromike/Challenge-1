@@ -1,15 +1,18 @@
 #form {
-    width: 400px;
+    width: 50%;
     margin: auto; 
-    border: 3px solid #0BA5B5;
+    border: 2px solid #0C454B;
     outline-color: #00FFF7;
-    border-radius: 3px;
+    border-radius: 4px;
 
 }
 body {
     font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', 'sans-serif';
-    background-image: url(images/imager.jpg);
-    background-size: 70%;
+    background: url(images/img.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     
 }
 
@@ -47,7 +50,7 @@ input[type=password], select {
 
 input[type=submit] {
     width: 40%;
-    background-color: #0FAAED;
+    background-color: #434547;
     color: white;
     padding: 5px;
     margin: 8px 0;
@@ -62,6 +65,7 @@ input[type=submit] :hover {
 }
 
 #nav {
+    font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', 'sans-serif';
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -75,7 +79,7 @@ input[type=submit] :hover {
 #link {
     color: #FFFDFD;
     text-decoration: none;
-    background-color: #0BA5B5;
+    background-color: #434547;
     width: 100%;
     padding: 5px;
     margin: 8px ;
@@ -87,3 +91,13 @@ input[type=submit] :hover {
 #link:hover {
     color: #00FFF7;
 }
+
+#navigation{
+    position:relative;
+    padding-top: 5%;
+    left:7%;
+    height:40%;
+    font-family: sans-serif;
+    font-weight: bold;
+
+   }

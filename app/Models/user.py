@@ -1,4 +1,3 @@
-import uuid
 
 class User(object):
     def __init__(self, username, email, password):

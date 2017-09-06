@@ -10,13 +10,12 @@
             <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='bootstrap.min.js')}}"/>
         </head>
         <body>
-                <h1 style="padding-top:1%; text-align: center; font-family: sans-serif; color:#434546;font-size: 80px; font-weight: bold;"> <!--Montserrat;-->
-                    Shopping List App
-                </h1>
-            <div id="navigation" style="font-weight: normal; padding-top: 0%;position:absolute;">
+            <div id="nav">
                 <p>
                         <a href="/dashboard" id="link"> Dashboard </a>
                 </p>
+                <br>
+                <br>
                 <div >
                     {% if session['logged_in'] == True %}
                         <p> {{ session['id']}}
@@ -42,15 +41,32 @@
                     <li> None </li> 
                 {% else %}           
                     {% for shoppinglist in shoppinglists %}
-                        <li><a href="/add_item">{{ shoppinglist }}</a></li>
+                        <li><a href="/added_items">{{ shoppinglist }}</a></li>
                     {% endfor %}
                 {% endif %}
-            </ol>
-            
-            {% endif %}
-        
+            </ol>            
+            {% endif %} 
+
+            <form action="" style="margin:15px" method="post">                
+                <input type="text" name="additem" placeholder="additem" value="{{
+                    request.form.additem }}" required>
+                <br>
+                <div class="container">
+                        {% for message in get_flashed_messages() %}
+                        <div class="alert alert-success" role="alert">
+                          <button type="button" class="close" data-dissmiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <p>{{ message }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                <input type="submit" value="Create Item">
+                <br>
+                </form>
 
             </div>
+
         </body>
     </html>
 
