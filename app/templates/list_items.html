@@ -15,10 +15,9 @@
                         <a href="/dashboard" id="link"> Dashboard </a>
                 </p>
                 <br>
-                <br>
                 <div >
                     {% if session['logged_in'] == True %}
-                        <p> {{ session['id']}}
+                        <p id="link"> {{ session['id']}} </p>
                     {% endif %}
                 <a href="/dashboard" id="link"> Create New List </a>
                 <br>
@@ -31,7 +30,7 @@
             <br>
             <br>
             
-            <div id="form" style="margin-left:25%">
+            <div id="form" style="margin-left:25%; width: 30%;">
             <p>
                 Your shopping lists
             </p>

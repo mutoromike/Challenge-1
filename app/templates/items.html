@@ -10,6 +10,9 @@
             <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='bootstrap.min.js')}}"/>
         </head>
         <body>
+                <h1 style="padding-top:1%; text-align: center; font-family: sans-serif; color:#434546;font-size: 80px; font-weight: bold;"> <!--Montserrat;-->
+                    Shopping List App
+                </h1> 
             <div id="nav">
                 <p>
                         <a href="/dashboard" id="link"> Dashboard </a>
@@ -18,7 +21,7 @@
                 <br>
                 <div >
                     {% if session['logged_in'] == True %}
-                        <p> {{ session['id']}}
+                        <p id="link"> {{ session['id']}} </p>
                     {% endif %}
                 <a href="/dashboard" id="link"> Create New List </a>
                 <br>
@@ -31,7 +34,7 @@
             <br>
             <br>
             
-            <div id="form" style="margin-left:25%">
+            <div id="form" style="margin-left:25%; width: 30%;">
             <p>
                 Your shopping lists
             </p>

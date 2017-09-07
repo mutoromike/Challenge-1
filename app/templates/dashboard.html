@@ -17,7 +17,7 @@
                 <br>
                 <div id="navigation" style="font-weight: normal; padding-top: 0%;position:absolute;">
                     {% if session['logged_in'] == True %}
-                        <p> {{ session['id']}}
+                        <p id="link"> {{ session['id']}} </p>
                     {% endif %}
                 <a href="/shoppinglist" id="link"> View lists </a>
                 <br>
