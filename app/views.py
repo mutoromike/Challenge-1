@@ -19,9 +19,11 @@ app.item_list = {}
 
 def create_new_user(username, password, email):      
     account = User(username, email, password)
+    account_details = [email, password]
     app.userdetails[username] = []
-    app.userdetails[username] = account
-    return app.userdetails
+    app.userdetails[username] = account_details
+    
+    
 
 def add_shoppinglist(name, user_id, id = None):#name and desc
     # created_time =' datetime.date.now()'
@@ -54,12 +56,15 @@ def create_new_item(shoppinglist, name):
 @app.route('/', methods=['GET', 'POST'])#route to handle requests to the login
 def login():
     error = None
-    if request.method == 'POST':
-       
+    if request.method == 'POST':       
         name = request.form['username']
         pswd = request.form['password']
-        if name in app.username_list:
-            if pswd in app.passwords_list:
+        if name in app.userdetails:
+            print(name)
+            print('hahaha', app.userdetails[name])
+            pswd_list = app.userdetails[name][-1]
+            print(pswd_list)
+            if pswd == pswd_list:
                 session['logged_in'] = True
                 session['id'] = name
                 flash('Login successful')
@@ -113,17 +118,16 @@ def logout():
 def register():
     error = None
     if request.method == 'POST':
-        username     = request.form['username']
-        email       = request.form['email']
-        password    = request.form['password']
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
         confirm_password = request.form['confirm_password']
         if username not in app.username_list:
             if email not in app.email_list:
                 if validators.email(email):
                     if len(password) > 5:
-                        if password == confirm_password:  
-                            new = create_new_user(username, email, password,)
-                            app.userdetails[username] = new
+                        if password == confirm_password:   
+                            create_new_user(username, password, email)
                             app.username_list.append(username)
                             app.email_list.append(email)
                             app.passwords_list.append(password)
