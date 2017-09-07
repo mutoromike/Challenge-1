@@ -126,13 +126,16 @@ def register():
             if email not in app.email_list:
                 if validators.email(email):
                     if len(password) > 5:
-                        if password == confirm_password:   
-                            create_new_user(username, password, email)
-                            app.username_list.append(username)
-                            app.email_list.append(email)
-                            app.passwords_list.append(password)
-                            flash('User successfully created')
-                            return redirect('/')
+                        if password == confirm_password:
+                            if isinstance(username, str):   
+                                create_new_user(username, password, email)
+                                app.username_list.append(username)
+                                app.email_list.append(email)
+                                app.passwords_list.append(password)
+                                flash('User successfully created')
+                                return redirect('/')
+                            else:
+                                error = 'Provide only letters for username'
                         else:
                             error = 'The two passwords should match'
                     else:    
