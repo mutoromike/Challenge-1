@@ -25,7 +25,7 @@ def create_new_user(username, password, email):
     account_details = [email, password]
     app.userdetails[username] = []
     app.userdetails[username] = account_details
-    
+    return app.userdetails
     
 
 def add_shoppinglist(name, user_id, id = None):
