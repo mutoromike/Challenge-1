@@ -1,6 +1,6 @@
 # Challenge-1 - Shopping List Application
 Welcome to your shopping list
-
+[![Build Status](https://travis-ci.org/mutoromike/Challenge-1.svg?branch=master)](https://travis-ci.org/mutoromike/Challenge-1)
 # Design folder
 
 UML Class Diagrams, Wireframes 
