@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html id="main">
+        <head>
+            <title>Dashboard</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css')}}"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome.css')}}"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome.min.css')}}"/>
+            <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='bootstrap.min.js')}}"/>
+        </head>
+        <body>
+                <h1 style="padding-top:1%; text-align: center; font-family: sans-serif; color:#434546;font-size: 80px; font-weight: bold;"> <!--Montserrat;-->
+                    Shopping List App
+                </h1>
+            <div id="navigation" style="font-weight: normal; padding-top: 0%;position:absolute;">
+                <p>
+                        <a href="/dashboard" id="link"> Dashboard </a>
+                </p>
+                <br>
+                <div >
+                    {% if session['logged_in'] == True %}
+                        <p id="link"> {{ session['id']}} </p>
+                    {% endif %}
+                <a href="/dashboard" id="link"> Create New List </a>
+                <br>
+                <a href="#" id="link"> Manage Lists </a>
+                <br>
+                <a href="logout" id="link"> Logout </a>
+                </div>
+            </div>
+            
+            <br>
+            <br>
+            
+            <div id="form" style="margin-left:25%; width: 30%;">
+            <p>
+                Your shopping lists
+            </p>
+            {% if session['logged_in'] == True %}
+            <ol>
+                {% if shoppinglists == []  %}  
+                    <li> None </li> 
+                {% else %}           
+                    {% for shoppinglist in shoppinglists %}
+                        <li><a href="/added_items">{{ shoppinglist }}</a></li>
+                    {% endfor %}
+                {% endif %}
+            </ol>            
+            {% endif %} 
+
+            <form action="" style="margin:15px" method="post">                
+                <input type="text" name="additem" placeholder="additem" value="{{
+                    request.form.additem }}" required>
+                <br>
+                <div class="container">
+                        {% for message in get_flashed_messages() %}
+                        <div class="alert alert-success" role="alert">
+                          <button type="button" class="close" data-dissmiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <p>{{ message }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                <input type="submit" value="Create Item">
+                <br>
+                </form>
+
+            </div>
+
+        </body>
+    </html>
+
+ <!-- This is a comment to perform pull request -->  
