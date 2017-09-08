@@ -3,11 +3,11 @@
         <head>
             <title>Dashboard</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"/>
-            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css')}}"/>
-            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome.css')}}"/>
-            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome.min.css')}}"/>
-            <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='bootstrap.min.js')}}"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css')}}"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css')}}"/>
+            <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='css/bootstrap.min.js')}}"/>
         </head>
         <body>
                 <h1 style="padding-top:1%; text-align: center; font-family: sans-serif; color:#434546;font-size: 80px; font-weight: bold;"> <!--Montserrat;-->
@@ -19,15 +19,24 @@
                     {% if session['logged_in'] == True %}
                         <p id="link"> {{ session['id']}} </p>
                     {% endif %}
-                <a href="/shoppinglist" id="link"> View lists </a>
+                <a href="shoppinglist" id="link"> View lists </a>
                 <br>
                 <a href="#" id="link"> Manage lists </a>
                 <br>
                 <a href="logout" id="link"> Logout </a>
                 </div>
             </div>
-                        
-            <div id="form" style="margin-left:25%; width: 30%;">
+            <div class="container" id="form" style="border:0px">
+                {% for message in get_flashed_messages() %}
+                <div class="alert alert-success" role="alert">
+                  <button type="button" class="close" data-dissmiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <p>{{ message }}</p>
+                </div>
+                {% endfor %}
+            </div>        
+            <div id="form" style="margin-left:25%; width: 30%;">               
             
            
             <form action="" style="margin:15px" method="post">
@@ -36,16 +45,6 @@
                     <input type="text" name="shoppinglist" placeholder="shoppinglist" value="{{
                         request.form.shoppinglist }}" required>
                     <br>
-                    <div class="container">
-                            {% for message in get_flashed_messages() %}
-                            <div class="alert alert-success" role="alert">
-                              <button type="button" class="close" data-dissmiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                              <p>{{ message }}</p>
-                            </div>
-                            {% endfor %}
-                        </div>
                     <input type="submit" value="Create List">
                     <br>
             </form>

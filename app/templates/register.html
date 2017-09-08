@@ -2,14 +2,14 @@
 <html id="main">
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome.css')}}"/>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome.min.css')}}"/>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"/>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css')}}"/>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-grid.min.css') }}">
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-reboot.min.css') }}">
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-reboot.css') }}">
-      <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='bootstrap.min.js')}}"/>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css')}}"/>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css')}}"/>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}"/>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}"/>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-reboot.min.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-reboot.css') }}">
+      <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='css/bootstrap.min.js')}}"/>
     </head>
     <body>
       <h1 style="padding-top:1%; text-align: center; font-family: sans-serif; color:#434546;font-size: 80px; font-weight: bold;"> <!--Montserrat;-->
@@ -31,20 +31,20 @@
       Sign Up
     </p>
     <form action="" style="margin:15px" method="POST">
-      username:<br>
+      Username:<br>
       <input type="text" name="username" placeholder="username" value="{{
         request.form.username }}"required>
       <br>
       
-      email:<br>
+      Email:<br>
       <input type="text" name="email" placeholder="email" value="{{
         request.form.email }}"required>
       <br>
-      password:<br>
+      Password:<br>
       <input type="password" name="password" placeholder="password" value="{{
         request.form.password }}"required>
       <br>
-      confirm password:<br>
+      Confirm password:<br>
       <input type="password" name="confirm_password" placeholder="confirm password" value="{{
         request.form.confirm_password }}"required>
       <br><br>

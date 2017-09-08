@@ -17,7 +17,10 @@ app.passwords_list = []
 app.shoppinglist = {}
 app.item_list = {}
 
-def create_new_user(username, password, email):      
+def create_new_user(username, password, email):  
+    """
+        Function to create users
+    """    
     account = User(username, email, password)
     account_details = [email, password]
     app.userdetails[username] = []
@@ -25,7 +28,10 @@ def create_new_user(username, password, email):
     
     
 
-def add_shoppinglist(name, user_id, id = None):#name and desc
+def add_shoppinglist(name, user_id, id = None):
+    """
+        Function to add a new shopping list
+    """
     # created_time =' datetime.date.now()'
     # print(created_time)
     # Created_time = created_time.strftime("%Y-%m-%d %H:%M")
@@ -38,12 +44,10 @@ def add_shoppinglist(name, user_id, id = None):#name and desc
         app.shoppinglist[user_id].append(shoppinglist_obj.name)
     return True
 
-def get_username_id(username):
-    for user in app.userdetails:
-        if app.userdetails[user].username == username:
-            return app.userdetails[user].id
-
 def create_new_item(shoppinglist, name):
+    """
+        Function to create new item
+    """
     itemlist_obj = Listitems(name)
     if shoppinglist not in app.item_list:
         app.item_list[shoppinglist] = []
@@ -52,7 +56,6 @@ def create_new_item(shoppinglist, name):
         app.item_list[shoppinglist].append(itemlist_obj.name)
     return True
 
-
 @app.route('/', methods=['GET', 'POST'])#route to handle requests to the login
 def login():
     error = None
@@ -60,8 +63,6 @@ def login():
         name = request.form['username']
         pswd = request.form['password']
         if name in app.userdetails:
-            print(name)
-            print('hahaha', app.userdetails[name])
             pswd_list = app.userdetails[name][-1]
             print(pswd_list)
             if pswd == pswd_list:
@@ -122,7 +123,7 @@ def register():
         email = request.form['email']
         password = request.form['password']
         confirm_password = request.form['confirm_password']
-        if username not in app.username_list:
+        if username not in app.userdetails:
             if email not in app.email_list:
                 if validators.email(email):
                     if len(password) > 5:
@@ -157,5 +158,8 @@ def shoppinglist():
         print(list_name)
     
     return render_template('lists.html', shoppinglists=list_name)
+
+    
+
 
 
