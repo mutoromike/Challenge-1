@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html id="main">
+        <head>
+            <title>Dashboard</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css')}}"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css')}}"/>
+            <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='css/bootstrap.min.js')}}"/>
+        </head>
+        <body>
+                <h1 style="padding-top:1%; text-align: center; font-family: sans-serif; color:#434546;font-size: 80px; font-weight: bold;"> <!--Montserrat;-->
+                    Shopping List App
+                </h1>
+            <div id="navigation" style="font-weight: normal; padding-top: 0%;position:absolute;">
+                <p>
+                        <a href="/dashboard" id="link"> Dashboard </a>
+                </p>
+                <div >
+                    {% if session['logged_in'] == True %}
+                        <p id="link"> {{ session['id']}} </p>
+                    {% endif %}
+                <a href="/dashboard" id="link"> Create New List </a>
+                <br>
+                <a href="#" id="link"> Manage Lists </a>
+                <br>
+                <a href="logout" id="link"> Logout </a>
+                </div>
+            </div>            
+            <br>
+            <br>            
+            <div id="form" style="margin-left:25%; width: 30%;">
+                    <table class="table">
+                            <thead class="thead-default">
+                              <tr>
+                                <th>Shopping List Name</th>
+                                <th>Delete List</th>
+                              </tr>
+                            </thead>
+                            {% if session['logged_in'] == True %}
+                            <tbody>
+                              <tr>                                                                
+                                        
+                                        {% if shoppinglists == []  %}  
+                                             <td>None</td>
+                                        {% else %}           
+                                            {% for shoppinglist in shoppinglists %} 
+                                            <div id="increment">
+                                            </div>                                           
+                                                <td>{{ shoppinglist }}</td>
+                                                <td><a href="#" class="btn btn-primary a-btn-slide-text" id="link">                                                   
+                                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                         <span>Delete</span>            
+                                                     </a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                      
+                                        {% endif %}                                
+                             
+                            </tbody>
+                    </table>
+                    <!-- <script>
+                        var tables = document.getElementsByTagName('table');
+                        var table = tables[tables.length - 1];
+                        var rows = table.rows;
+                        for(var i = 0, td; i < rows.length; i++){
+                            td = document.createElement('th');
+                            td.appendChild(document.createTextNode(i + 1));
+                            rows[i].insertBefore(td, rows[i].firstChild);
+                        }
+                    </script>
+             -->
+            
+            {% endif %}
+            </div>                      
+        </body>
+    </html>
+
+ <!-- This is a comment to perform pull request -->  
